@@ -53,3 +53,37 @@ Your PR will be picked up and reviewed before being merged into Pattern Projecto
 
 - Set up the development environment as described above.
 - Look inside the 'messages' directory for translations per language. Edit or add a new one as required.
+
+# Standalone version
+
+## Local development
+
+
+
+## Packaging and deployment
+
+To run the packaging process and create an NSIS installer, do
+
+    npm run build:electron.
+
+This will create a .exe installer in the 'dist' directory.
+
+### Debugging the packaging
+
+After running the build:electron command, there is an executable in dist\win-unpacked that you can run straight away.
+
+To test what goes into the installer, do:
+
+    electron-builder --config electron-builder.json build --dir > debug.txt
+
+Note that you will need to have electron-builder installed globally (or at least, electron-builder will have to be in
+your PATH. Since the global package directory is most likely in your PATH already anyway, installing a global copy is
+probably the easier. But then beware of having different versions in your local and global environments).
+
+This will create the contents of what eventually will go into the installer in dist\win-unpacked.
+
+To enable debugging for this, do
+
+    set DEBUG=electron-builder
+
+first.
